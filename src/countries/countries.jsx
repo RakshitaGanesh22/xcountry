@@ -13,7 +13,7 @@ export default function Country(){
         dat.current=ApiData.data;
      }
      catch(err){
-        console.error("Error fetching data: ");
+        console.error(`Error fetching data: ${err}`);
      }
      }
      ApiData();
@@ -28,3 +28,4 @@ export default function Country(){
         </div>
     )
 }
+// changed
