@@ -3,14 +3,14 @@ import axios from "axios";
 import { useState } from "react";
 import CountryCard from "./contryCard";
 export default function Country(){
-    const dat= useRef([])
+    const [data,updateData]=useState([])
     useEffect(()=>{
      let apiUrl="https://xcountries-backend.azurewebsites.net/all";
      const ApiData=async ()=>{
          try{
         let ApiData=await axios.get(apiUrl);
         console.log(ApiData)
-        dat.current=ApiData.data;
+        updateData(ApiData.data);
      }
      catch(err){
         console.error(`Error fetching data: ${err}`);
@@ -21,10 +21,10 @@ export default function Country(){
      
      
     },[])
-    console.log(dat.current);
+    console.log(data);
     return(
         <div style={{display:"flex",flexWrap:"wrap"}}>
-            {dat.current.map(ele=>{return (<CountryCard element={ele}/>)} )} 
+            {data.map(ele=>{return (<CountryCard  name={ele.name} flgImag={ele.flag} flagAltText={ele.abbr}/>)} )} 
         </div>
     )
 }
